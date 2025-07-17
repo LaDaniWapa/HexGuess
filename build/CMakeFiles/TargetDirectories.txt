@@ -1,5 +1,0 @@
-/home/daniela/CLionProjects/3DS_Template/build/CMakeFiles/3ds_template.dir
-/home/daniela/CLionProjects/3DS_Template/build/CMakeFiles/3dsx.dir
-/home/daniela/CLionProjects/3DS_Template/build/CMakeFiles/cia.dir
-/home/daniela/CLionProjects/3DS_Template/build/CMakeFiles/edit_cache.dir
-/home/daniela/CLionProjects/3DS_Template/build/CMakeFiles/rebuild_cache.dir

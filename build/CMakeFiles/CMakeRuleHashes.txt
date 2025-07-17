@@ -1,5 +1,0 @@
-# Hashes of file build rules.
-d2d2e8dab817a1bd355f4ef9af309393 CMakeFiles/3dsx
-d86def08abb6ffbbec1b6c8006c7a503 CMakeFiles/cia
-e8740b37bac3540224c921eb55e345ce banner.bnr
-fba71ce26abc3bd38a55bc5bb3e56a98 icon.smdh
