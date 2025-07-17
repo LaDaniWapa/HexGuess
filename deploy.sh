@@ -6,7 +6,7 @@ FTP_HOST="192.168.1.24"
 FTP_USER="3ds"
 FTP_PASS="3ds"
 FTP_PORT="5000"
-PROJECT_NAME="3ds_template"
+PROJECT_NAME="HexGuess"
 BUILD_DIR="build"
 
 # FTP paths on 3DS

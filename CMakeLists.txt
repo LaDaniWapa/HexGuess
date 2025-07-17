@@ -24,7 +24,7 @@ set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)
 
 # Project definition
-project(3ds_template LANGUAGES C CXX ASM)
+project(HexGuess LANGUAGES C CXX ASM)
 set(PROJECT_DESCRIPTION "Template project")
 set(PROJECT_AUTHOR "LaDaniWapa")
 
@@ -63,6 +63,9 @@ set(CMAKE_EXE_LINKER_FLAGS "-specs=3dsx.specs -march=armv6k -mtune=mpcore -mfloa
 # Define your source files
 set(SOURCES
         src/main.cpp
+        src/shake128.cpp
+        src/helper.cpp
+        src/helper.h
         # Add more source files here as needed
 )
 
