@@ -2,7 +2,7 @@
 # 3DS FTP Deployment Script (Bash version)
 
 # Configuration (edit these values)
-FTP_HOST="192.168.1.26"
+FTP_HOST="192.168.1.24"
 FTP_USER="3ds"
 FTP_PASS="3ds"
 FTP_PORT="5000"

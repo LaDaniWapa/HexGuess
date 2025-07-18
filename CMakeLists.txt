@@ -65,6 +65,7 @@ set(SOURCES
         src/main.cpp
         src/shake128.cpp
         src/helper.cpp
+        include/colors.h
 )
 
 # Create SMDH file from PNG icon

@@ -18,6 +18,14 @@
  *
  * @return Color of the day
  */
-uint32_t getTodaysColor();
+u32 getTodaysColor();
+
+/**
+ * Updates the info in the status bar once every 30s
+ *
+ * @param txtTime Text to be updated with the current time
+ * @param txtBattery Text to be updated with the current battery level
+ */
+void updateStatusBar(C2D_Text* txtTime, C2D_Text* txtBattery);
 
 #endif //HELPER_H
