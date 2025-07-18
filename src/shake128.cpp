@@ -206,7 +206,7 @@ void shake128(vector<uint8_t> in, int d, vector<uint8_t>& out)
     keccak(256, in, d, out);
 }
 
-uint32_t date_to_color(int const date)
+uint32_t dateToColor(int const date)
 {
     uint32_t color = 0x0;
     constexpr uint8_t bytes = 3;
@@ -224,5 +224,5 @@ uint32_t date_to_color(int const date)
         color += out[i];
     }
 
-    return color;
+    return color + (0xff << 24);;
 }

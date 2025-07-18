@@ -1,42 +1,57 @@
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <3ds.h>
-#include <3ds/os.h>
 #include <3ds/console.h>
-#include <ctime>
+#include <citro2d.h>
+
+#include "helper.h"
 #include "shake128.h"
 
-#define EPOCH_MARGIN 2208988800000ULL
 
 int main()
 {
+    // Init Libs
     gfxInitDefault();
-    consoleInit(GFX_TOP, nullptr);
+    C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
+    C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
+    C2D_Prepare();
+    consoleInit(GFX_BOTTOM, nullptr);
 
-    printf("HexGuess\n");
+    C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
-    auto timeref = osGetTimeRef(); // NTP Epoch
-    const time_t rawtime = (timeref.value_ms - EPOCH_MARGIN) / 1000; // ms to seconds
-    const tm* dt = localtime(&rawtime); // spects seconds
-
-    const int date_number = dt->tm_mday * 1000000 + (dt->tm_mon + 1) * 10000 + dt->tm_year + 1900;
-    const uint32_t hexcolor = date_to_color(date_number);
-
-    printf("%d => #%X\n", date_number, hexcolor);
+    // ABGR
+    u32 clrClear = 0xffe4e4e4;
+    u32 clrRed = getTodaysColor();
+    printf("todays color = %x\n", clrRed);
 
     // Main loop
     while (aptMainLoop())
     {
-        gspWaitForVBlank();
-        gfxSwapBuffers();
         hidScanInput();
 
-        // Your code goes here
+        // Respond to user input
         u32 kDown = hidKeysDown();
+
         if (kDown & KEY_START)
-            break; // break in order to return to hbmenu
+            break; // Exit app
+
+        printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
+        printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
+        printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
+
+        // Render the scene
+        C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+        C2D_TargetClear(top, clrClear);
+        C2D_SceneBegin(top);
+
+        C2D_DrawRectSolid(10, 10, 0, 50, 50, clrRed);
+
+        C3D_FrameEnd(0);
     }
 
+    // Deinit Libs
+    C2D_Fini();
+    C3D_Fini();
     gfxExit();
     return 0;
 }

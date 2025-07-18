@@ -65,8 +65,6 @@ set(SOURCES
         src/main.cpp
         src/shake128.cpp
         src/helper.cpp
-        src/helper.h
-        # Add more source files here as needed
 )
 
 # Create SMDH file from PNG icon
@@ -77,6 +75,7 @@ add_custom_command(
         COMMENT "Creating icon.smdh"
 )
 
+# Create BNR file from PNG icon and WAV sound
 add_custom_command(
         OUTPUT ${CMAKE_BINARY_DIR}/banner.bnr
         COMMAND $ENV{DEVKITPRO}/tools/bin/bannertool makebanner -i ${CMAKE_SOURCE_DIR}/assets/banner.png -a ${CMAKE_SOURCE_DIR}/assets/sound.wav -o ${CMAKE_BINARY_DIR}/banner.bnr
@@ -89,6 +88,8 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link libraries (order matters!)
 target_link_libraries(${PROJECT_NAME}
+        citro2d
+        citro3d
         ctru
         m
 )
