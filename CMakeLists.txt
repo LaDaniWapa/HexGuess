@@ -63,9 +63,10 @@ set(CMAKE_EXE_LINKER_FLAGS "-specs=3dsx.specs -march=armv6k -mtune=mpcore -mfloa
 # Define your source files
 set(SOURCES
         src/main.cpp
-        src/shake128.cpp
-        src/helper.cpp
-        include/colors.h
+        src/Shake128.cpp
+        src/Helper.cpp
+        src/HexGuess.cpp
+        src/StatusBar.cpp
 )
 
 # Create SMDH file from PNG icon

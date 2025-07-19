@@ -1,6 +1,6 @@
 // https://github.com/arnaud-robin/shake128/blob/master/shake128.cpp
 
-#include "shake128.h"
+#include "Shake128.h"
 
 // Round constants for faster computation
 constexpr uint64_t keccak_RC[24] = {
@@ -204,25 +204,4 @@ void shake128(vector<uint8_t> in, int d, vector<uint8_t>& out)
     uint8_t pad = 0x1f;
     in.push_back(pad);
     keccak(256, in, d, out);
-}
-
-uint32_t dateToColor(int const date)
-{
-    uint32_t color = 0x0;
-    constexpr uint8_t bytes = 3;
-
-    vector<uint8_t> in(sizeof(date));
-    memcpy(in.data(), &date, sizeof(date));
-
-    vector<uint8_t> out;
-
-    shake128(in, bytes, out);
-
-    for (int i = 0; i <bytes; i++)
-    {
-        color = color << 8; // 8bits = 2 bytes = 2 numbers
-        color += out[i];
-    }
-
-    return color + (0xff << 24);;
 }
